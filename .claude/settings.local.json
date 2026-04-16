@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:mvnrepository.com)",
+      "WebFetch(domain:android-developers.googleblog.com)",
+      "WebFetch(domain:maven.google.com)",
+      "WebFetch(domain:dl.google.com)",
+      "WebFetch(domain:cs.android.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:androidx.tech)",
+      "WebFetch(domain:api.github.com)"
+    ]
+  }
+}
