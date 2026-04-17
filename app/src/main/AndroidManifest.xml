@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".MadarTaskApplication"
+        android:name=".di.MadarTaskApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MadarTask">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.activity.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MadarTask">

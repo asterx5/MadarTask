@@ -1,8 +1,9 @@
-package com.madarsoft.madartask.presentation.display
+package com.madarsoft.madartask.presentation.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,6 +26,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -61,6 +63,7 @@ fun UsersScreen(
     var showClearAllDialog by remember { mutableStateOf(false) }
     var sortMenuExpanded by remember { mutableStateOf(false) }
 
+    val isLoading = users.loadState.refresh is LoadState.Loading
     val loadingComplete = users.loadState.refresh is LoadState.NotLoading
     val hasItems = users.itemCount > 0
     val isEmpty = loadingComplete && !hasItems
@@ -125,7 +128,16 @@ fun UsersScreen(
             }
         }
     ) { innerPadding ->
-        if (isEmpty) {
+        if (isLoading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        } else if (isEmpty) {
             EmptyState(
                 onAddClick = onNavigateToAdd,
                 modifier = Modifier
@@ -138,7 +150,7 @@ fun UsersScreen(
                     .fillMaxSize()
                     .padding(innerPadding),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp)
+                contentPadding = PaddingValues(16.dp)
             ) {
                 items(count = users.itemCount) { index ->
                     users[index]?.let { user ->

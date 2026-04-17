@@ -1,10 +1,9 @@
-package com.madarsoft.madartask
+package com.madarsoft.madartask.presentation.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.dropUnlessResumed
@@ -13,8 +12,8 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.madarsoft.madartask.presentation.UserViewModel
-import com.madarsoft.madartask.presentation.add.AddUserScreen
-import com.madarsoft.madartask.presentation.display.UsersScreen
+import com.madarsoft.madartask.presentation.screens.AddUserScreen
+import com.madarsoft.madartask.presentation.screens.UsersScreen
 import com.madarsoft.madartask.presentation.navigation.Screen
 import com.madarsoft.madartask.ui.theme.MadarTaskTheme
 import org.koin.compose.viewmodel.koinViewModel
@@ -27,7 +26,7 @@ class MainActivity : ComponentActivity() {
             MadarTaskTheme {
                 val backStack = remember { mutableStateListOf<Any>(Screen.DisplayUsers) }
                 val viewModel = koinViewModel<UserViewModel>()
-                //LaunchedEffect(Unit) { viewModel.seedDatabase() }
+                //LaunchedEffect(Unit) { viewModel.seedDatabase(120) } //TODO you can uncomment this line to seed the database with dummy data on app launch, for testing purposes.
 
                 NavDisplay(
                     backStack = backStack,

@@ -44,6 +44,8 @@ koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = 
 koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
 paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
 paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
+paging-testing = { group = "androidx.paging", name = "paging-testing", version.ref = "paging" }
+room-testing   = { group = "androidx.room",   name = "room-testing",   version.ref = "room"   }
 androidx-compose-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts" }
 navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3" }
 navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }

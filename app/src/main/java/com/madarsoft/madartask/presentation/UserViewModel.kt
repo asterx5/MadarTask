@@ -45,7 +45,7 @@ class UserViewModel(
         viewModelScope.launch { clearAllUsersUseCase() }
     }
 
-    fun seedDatabase() {
+    fun seedDatabase(size : Int = 1000) {
         val firstNames = listOf(
             "Ahmed", "Sara", "Mohammed", "Fatima", "Omar", "Layla", "Ali", "Nour", "Khalid", "Rana",
             "Yusuf", "Hana", "Ibrahim", "Mariam", "Tariq", "Dina", "Hassan", "Rania", "Samira", "Karim",
@@ -84,7 +84,7 @@ class UserViewModel(
             "Security Engineer", "Penetration Tester", "CISO", "Compliance Officer"
         )
         viewModelScope.launch {
-            repeat(1000) {
+            repeat(size) {
                 addUserUseCase(
                     User(
                         name = "${firstNames.random()} ${lastNames.random()}",
