@@ -7,6 +7,7 @@ import androidx.paging.map
 import com.innovatek.madartask.data.local.datasource.UserLocalDataSource
 import com.innovatek.madartask.data.local.entity.toDomain
 import com.innovatek.madartask.data.local.entity.toEntity
+import com.innovatek.madartask.domain.model.SortOrder
 import com.innovatek.madartask.domain.model.User
 import com.innovatek.madartask.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
@@ -24,10 +25,14 @@ class UserRepositoryImpl(
         localDataSource.deleteUser(id)
     }
 
-    override fun getUsers(): Flow<PagingData<User>> =
+    override suspend fun clearAll() {
+        localDataSource.clearAll()
+    }
+
+    override fun getUsers(sortOrder: SortOrder): Flow<PagingData<User>> =
         Pager(
             config = PagingConfig(pageSize = 20, enablePlaceholders = false)
         ) {
-            localDataSource.getUsers()
+            localDataSource.getUsers(sortOrder)
         }.flow.map { pagingData -> pagingData.map { it.toDomain() } }
 }

@@ -1,4 +1,6 @@
 package com.innovatek.madartask.presentation.navigation
 
-data object AddUserRoute
-data object DisplayUsersRoute
+sealed class Screen {
+    data object DisplayUsers : Screen()
+    data object AddUser : Screen()
+}

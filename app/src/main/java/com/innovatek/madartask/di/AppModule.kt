@@ -7,6 +7,7 @@ import com.innovatek.madartask.data.local.db.AppDatabase
 import com.innovatek.madartask.data.repository.UserRepositoryImpl
 import com.innovatek.madartask.domain.repository.UserRepository
 import com.innovatek.madartask.domain.usecase.AddUserUseCase
+import com.innovatek.madartask.domain.usecase.ClearAllUsersUseCase
 import com.innovatek.madartask.domain.usecase.DeleteUserUseCase
 import com.innovatek.madartask.domain.usecase.GetUsersUseCase
 import com.innovatek.madartask.presentation.UserViewModel
@@ -27,7 +28,8 @@ val appModule = module {
 
     factory { AddUserUseCase(get()) }
     factory { DeleteUserUseCase(get()) }
+    factory { ClearAllUsersUseCase(get()) }
     factory { GetUsersUseCase(get()) }
 
-    viewModel { UserViewModel(get(), get(), get()) }
+    viewModel { UserViewModel(get(), get(), get(), get()) }
 }

@@ -15,8 +15,7 @@ import androidx.navigation3.ui.NavDisplay
 import com.innovatek.madartask.presentation.UserViewModel
 import com.innovatek.madartask.presentation.add.AddUserScreen
 import com.innovatek.madartask.presentation.display.UsersScreen
-import com.innovatek.madartask.presentation.navigation.AddUserRoute
-import com.innovatek.madartask.presentation.navigation.DisplayUsersRoute
+import com.innovatek.madartask.presentation.navigation.Screen
 import com.innovatek.madartask.ui.theme.MadarTaskTheme
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -26,7 +25,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MadarTaskTheme {
-                val backStack = remember { mutableStateListOf<Any>(DisplayUsersRoute) }
+                val backStack = remember { mutableStateListOf<Any>(Screen.DisplayUsers) }
                 val viewModel = koinViewModel<UserViewModel>()
                 //LaunchedEffect(Unit) { viewModel.seedDatabase() }
 
@@ -38,15 +37,15 @@ class MainActivity : ComponentActivity() {
                         rememberViewModelStoreNavEntryDecorator()
                     ),
                     entryProvider = entryProvider {
-                        entry<DisplayUsersRoute> {
+                        entry<Screen.DisplayUsers> {
                             UsersScreen(
                                 viewModel = viewModel,
                                 onNavigateToAdd = dropUnlessResumed {
-                                    backStack.add(AddUserRoute)
+                                    backStack.add(Screen.AddUser)
                                 }
                             )
                         }
-                        entry<AddUserRoute> {
+                        entry<Screen.AddUser> {
                             AddUserScreen(
                                 viewModel = viewModel,
                                 onBack = dropUnlessResumed {
