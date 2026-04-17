@@ -1,0 +1,38 @@
+package com.madarsoft.madartask.data.repository
+
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
+import com.madarsoft.madartask.data.local.datasource.UserLocalDataSource
+import com.madarsoft.madartask.data.local.entity.toDomain
+import com.madarsoft.madartask.data.local.entity.toEntity
+import com.madarsoft.madartask.domain.model.SortOrder
+import com.madarsoft.madartask.domain.model.User
+import com.madarsoft.madartask.domain.repository.UserRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+
+class UserRepositoryImpl(
+    private val localDataSource: UserLocalDataSource
+) : UserRepository {
+
+    override suspend fun addUser(user: User) {
+        localDataSource.insertUser(user.toEntity())
+    }
+
+    override suspend fun deleteUser(id: Int) {
+        localDataSource.deleteUser(id)
+    }
+
+    override suspend fun clearAll() {
+        localDataSource.clearAll()
+    }
+
+    override fun getUsers(sortOrder: SortOrder): Flow<PagingData<User>> =
+        Pager(
+            config = PagingConfig(pageSize = 20, enablePlaceholders = false)
+        ) {
+            localDataSource.getUsers(sortOrder)
+        }.flow.map { pagingData -> pagingData.map { it.toDomain() } }
+}

@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.innovatek.madartask"
+    namespace = "com.madarsoft.madartask"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -13,7 +13,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.innovatek.madartask"
+        applicationId = "com.madarsoft.madartask"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

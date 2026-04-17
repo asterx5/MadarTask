@@ -11,7 +11,8 @@
       "WebFetch(domain:androidx.tech)",
       "WebFetch(domain:api.github.com)",
       "WebFetch(domain:www.madarsoft.com)",
-      "Bash(gh api *)"
+      "Bash(gh api *)",
+      "Bash(find app/src -name \"*.kt\" -exec sed -i 's/com\\\\.innovatek\\\\.madartask/com.madarsoft.madartask/g' {} +)"
     ]
   }
 }
